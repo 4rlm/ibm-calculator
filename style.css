@@ -41,7 +41,7 @@ h1 {
   width: 50%;
 }
 
-.slidecontainer {
+.slide-container {
   width: 100%;
   display: flex;
   flex-direction: row;

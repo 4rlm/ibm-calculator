@@ -1,5 +1,5 @@
-var slider = document.getElementById('rate');
-var output = document.getElementById('display-rate');
+const slider = document.getElementById('rate');
+const output = document.getElementById('display-rate');
 var sliderValue = slider.value + '%';
 output.innerHTML = sliderValue;
 
@@ -7,34 +7,33 @@ slider.oninput = function () {
   output.innerHTML = this.value;
 };
 
-function compute() {
-  var form = document.forms['calculator-form'];
-  var principal = form['principal'].value;
-  var rate = form['rate'].value;
-  var years = form['years'].value;
-
+function validatePrincipal(principal) {
   if (principal.length < 1) {
     alert('Principal blank.  Enter a positive number.');
   } else if (principal <= 0) {
     alert('Enter a positive number.');
   }
+}
 
-  var interest = (principal * rate * years) / 100;
+function calculateInterest(principal, rate, years) {
+  return (principal * rate * years) / 100;
+}
 
+function calculateMaturity(years) {
   const d = new Date();
-  let year = d.getFullYear();
+  const year = d.getFullYear();
   let yearInt = parseInt(years);
-  var maturity = year + yearInt;
+  return year + yearInt;
+}
 
-  var showPrincipal = document.getElementById('show-principal');
-  var displayRate = document.getElementById('display-rate');
-  var showRate = document.getElementById('show-rate');
-  var showInterest = document.getElementById('show-interest');
-  var showMaturity = document.getElementById('show-maturity');
+function displayValues(principal, rate, interest, maturity) {
+  const showPrincipal = document.getElementById('show-principal');
+  const showRate = document.getElementById('show-rate');
+  const showInterest = document.getElementById('show-interest');
+  const showMaturity = document.getElementById('show-maturity');
 
   showPrincipal.textContent = principal;
   showRate.textContent = rate;
-  displayRate.textContent = rate;
   showInterest.textContent = interest;
   showMaturity.textContent = maturity;
 
@@ -42,4 +41,20 @@ function compute() {
   showRate.classList.add('highlight');
   showInterest.classList.add('highlight');
   showMaturity.classList.add('highlight');
+}
+
+function formValues() {
+  const form = document.forms['calculator-form'];
+  const principal = form['principal'].value;
+  const rate = form['rate'].value;
+  const years = form['years'].value;
+  return [principal, rate, years];
+}
+
+function compute() {
+  let [principal, rate, years] = formValues();
+  validatePrincipal(principal);
+  let interest = calculateInterest(principal, rate, years);
+  let maturity = calculateMaturity(years);
+  displayValues(principal, rate, interest, maturity);
 }
