@@ -1,4 +1,35 @@
-body {background-color:tan;}
-h1{color:green;}
+body {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  background-color: black;
+}
 
+#calculator-wrapper {
+  position: relative;
+  background-color: whitesmoke;
+  border-radius: 20px;
+  width: 500px;
+  height: 500px;
+  margin: 20px;
+  padding: 20px;
+  text-align: left;
+}
 
+h1 {
+  color: gray;
+}
+
+#calculator-form {
+  margin-left: 45px;
+  line-height: 2.5;
+}
+
+#compute-btn {
+  padding: 4px;
+}
+
+#compute-btn:hover {
+  filter: brightness(99%);
+}
