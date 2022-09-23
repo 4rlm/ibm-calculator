@@ -1,8 +1,23 @@
+var slider = document.getElementById('rate');
+var output = document.getElementById('display-rate');
+var sliderValue = slider.value + '%';
+output.innerHTML = sliderValue;
+
+slider.oninput = function () {
+  output.innerHTML = this.value;
+};
+
 function compute() {
   var form = document.forms['calculator-form'];
   var principal = form['principal'].value;
   var rate = form['rate'].value;
   var years = form['years'].value;
+
+  if (principal.length < 1) {
+    alert('Principal blank.  Enter a positive number.');
+  } else if (principal <= 0) {
+    alert('Enter a positive number.');
+  }
 
   var interest = (principal * rate * years) / 100;
 
