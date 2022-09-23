@@ -33,3 +33,7 @@ h1 {
 #compute-btn:hover {
   filter: brightness(99%);
 }
+
+.highlight {
+  background-color: yellow;
+}
